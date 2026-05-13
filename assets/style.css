@@ -1,0 +1,818 @@
+/* ============================================================
+   Weather Analytics Dashboard — Professional Dual-Theme CSS
+   SAVE AS: assets/style.css
+
+   Theme classes applied to #theme-wrapper:
+     .theme-dark   → #00171F / #003459 / #007EA7 / #00A8E8
+     .theme-light  → #D9D9D9 / #FFFFFF / #3C6E71 / #284B63
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ══════════════════════════════════════════════════════════
+   1. CSS VARIABLES — DARK THEME (default)
+   ══════════════════════════════════════════════════════════ */
+.theme-dark {
+  --bg: #00171F;
+  --surface: #003459;
+  --surface2: #00253E;
+  --border: #007EA7;
+  --primary: #007EA7;
+  --secondary: #00A8E8;
+  --success: #00A8E8;
+  --warning: #FFC947;
+  --danger: #FF6B6B;
+  --text: #b7acac;
+  --text-muted: #B0C4D8;
+  --card-bg: #003459;
+  --card-border: #007EA7;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --topbar-bg: #003459;
+  --topbar-border: #007EA7;
+  --btn-bg: #007EA7;
+  --btn-hover: #00A8E8;
+  --btn-text: #FFFFFF;
+  --input-bg: #00253E;
+  --slider-rail: #004A6E;
+  --grid-line: #004A6E;
+  --scrollbar: #007EA7;
+  --dot-opacity: 0.03;
+}
+
+/* ══════════════════════════════════════════════════════════
+   2. CSS VARIABLES — LIGHT THEME
+   ══════════════════════════════════════════════════════════ */
+.theme-light {
+  --bg: #D9D9D9;
+  --surface: #FFFFFF;
+  --surface2: #F2F4F6;
+  --border: #C4CDD6;
+  --primary: #3C6E71;
+  --secondary: #284B63;
+  --success: #3C6E71;
+  --warning: #E8A838;
+  --danger: #E05A5A;
+  --text: #353535;
+  --text-muted: #6B7280;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --card-shadow: 0 2px 16px rgba(40, 75, 99, 0.10);
+  --topbar-bg: #284B63;
+  --topbar-border: #3C6E71;
+  --btn-bg: #284B63;
+  --btn-hover: #3C6E71;
+  --btn-text: #FFFFFF;
+  --input-bg: #F2F4F6;
+  --slider-rail: #C4CDD6;
+  --grid-line: #D9D9D9;
+  --scrollbar: #3C6E71;
+  --dot-opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   3. RESET
+   ══════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 15px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  background: #00171F;
+}
+
+/* ══════════════════════════════════════════════════════════
+   4. THEME WRAPPER — fills viewport
+   ══════════════════════════════════════════════════════════ */
+#theme-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle dot pattern for dark mode */
+.theme-dark #theme-wrapper,
+.theme-dark {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(0, 168, 232, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(0, 126, 167, 0.05) 0%, transparent 50%),
+    radial-gradient(rgba(255, 255, 255, var(--dot-opacity)) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   5. TOPBAR (sticky navigation header)
+   ══════════════════════════════════════════════════════════ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  width: 100%;
+  background: var(--topbar-bg);
+  border-bottom: 2px solid var(--topbar-border);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  gap: 16px;
+  flex-wrap: wrap;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Brand left side */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-logo {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  flex-shrink: 0;
+}
+
+.topbar-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.accent-word {
+  color: var(--secondary);
+}
+
+.theme-light .accent-word {
+  color: #7FCFD2;
+}
+
+.topbar-sub {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.58);
+  margin-top: 2px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* Right side controls */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* LIVE badge */
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 168, 232, 0.15);
+  border: 1px solid rgba(0, 168, 232, 0.35);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+
+.theme-light .live-badge {
+  background: rgba(60, 110, 113, 0.15);
+  border-color: rgba(60, 110, 113, 0.4);
+}
+
+.live-dot {
+  color: #00A8E8;
+  font-size: 0.9em;
+  animation: pulse-dot 5s infinite;
+}
+
+.theme-light .live-dot {
+  color: #3C6E71;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ── Theme toggle button ────────────────────────────────── */
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--btn-bg);
+  border: 1px solid var(--border);
+  color: var(--btn-text);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.25s ease;
+}
+
+.theme-btn:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
+  border-color: var(--secondary);
+}
+
+.theme-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   6. PAGE BODY
+   ══════════════════════════════════════════════════════════ */
+.page-body {
+  flex: 1;
+  max-width: 1700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 28px 56px;
+  animation: fadeUp 0.4s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   7. SECTION TITLE
+   ══════════════════════════════════════════════════════════ */
+.section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   8. KPI CARDS
+   ══════════════════════════════════════════════════════════ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 1300px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px 18px 16px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.22);
+}
+
+.kpi-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kpi-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.kpi-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.kpi-value {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.kpi-unit {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════
+   9. MAIN LAYOUT (sidebar + charts)
+   ══════════════════════════════════════════════════════════ */
+.main-layout {
+  display: grid;
+  grid-template-columns: 274px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+@media (max-width: 1060px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   10. FILTER SIDEBAR
+   ══════════════════════════════════════════════════════════ */
+.filter-sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px 18px;
+  box-shadow: var(--card-shadow);
+  position: sticky;
+  top: 100px;
+  /* clears topbar height */
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-heading {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.filter-label {
+  display: block;
+  font-size: 0.69rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 16px 0 6px;
+  transition: color 0.3s;
+}
+
+/* ── Dash Dropdown overrides ────────────────────────────── */
+.Select-control {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text) !important;
+  transition: border-color 0.2s !important;
+  min-height: 36px !important;
+  box-shadow: none !important;
+}
+
+.Select-control:hover {
+  border-color: var(--primary) !important;
+}
+
+.Select-control.is-focused {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(0, 126, 167, 0.2) !important;
+}
+
+.theme-light .Select-control.is-focused {
+  box-shadow: 0 0 0 2px rgba(60, 110, 113, 0.2) !important;
+}
+
+.Select-value-label {
+  color: var(--text) !important;
+}
+
+.Select-placeholder {
+  color: var(--text-muted) !important;
+}
+
+.Select-arrow-zone svg {
+  fill: var(--text-muted) !important;
+}
+
+.Select-clear-zone {
+  color: var(--text-muted) !important;
+}
+
+.Select-input>input {
+  color: var(--text) !important;
+}
+
+.Select-menu-outer {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  z-index: 9999 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28) !important;
+  margin-top: 4px !important;
+}
+
+.Select-option {
+  color: var(--text) !important;
+  background: var(--surface) !important;
+  font-size: 0.85rem !important;
+  padding: 8px 12px !important;
+}
+
+.Select-option:hover,
+.Select-option.is-focused {
+  background: var(--surface2) !important;
+  color: var(--primary) !important;
+}
+
+.Select-option.is-selected {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* Multi-value pills */
+.Select-multi-value-wrapper .Select-value {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  font-size: 0.78rem !important;
+}
+
+.Select-value-icon {
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-right-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.Select-value-icon:hover {
+  color: #fff !important;
+  background: var(--secondary) !important;
+}
+
+/* ── Range Slider ───────────────────────────────────────── */
+.rc-slider-track {
+  background: var(--primary) !important;
+}
+
+.rc-slider-handle {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 126, 167, 0.25) !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-top: -6px !important;
+}
+
+.rc-slider-rail {
+  background: var(--slider-rail) !important;
+  height: 4px !important;
+}
+
+.rc-slider-track {
+  height: 4px !important;
+}
+
+.rc-slider-mark-text {
+  color: var(--text-muted) !important;
+  font-size: 0.69rem !important;
+}
+
+.rc-slider-tooltip-inner {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* ── Date Picker ────────────────────────────────────────── */
+.date-picker {
+  width: 100% !important;
+}
+
+.DateRangePicker {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.DateRangePickerInput {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.DateInput {
+  width: calc(50% - 10px) !important;
+  background: transparent !important;
+}
+
+.DateInput_input,
+.DateInput__input {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 8px !important;
+  font-size: 0.8rem !important;
+  padding: 6px 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: border-color 0.2s !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.DateInput_input:focus {
+  border-color: var(--primary) !important;
+  outline: none !important;
+}
+
+.DateRangePicker_picker {
+
+  z-index: 9999 !important;
+  margin-top: 4px !important;
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  left: auto !important;
+  /* updated  */
+
+  /* position: relative !important;
+  /* Moves with the sidebar flow */
+  display: block !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin-top: 10px !important;
+  box-shadow: var(--card-shadow) !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--border) !important;
+  */
+}
+
+/* Fix calendar background and text colors to prevent transparency/clashing */
+.DateRangePicker_picker,
+.DayPicker,
+.DayPicker_transitionContainer,
+.CalendarMonth,
+.CalendarMonthGrid {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+/* Fix invisible text in calendar header dropdowns (Month/Year) */
+.DateRangePicker_picker select {
+  color: var(--text) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+}
+
+.CalendarDay {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.CalendarDay_1 {
+  background: var(--primary) !important;
+  color: #FFFFFF !important;
+}
+
+.CalendarDay:hover {
+  background: var(--surface2) !important;
+  color: var(--primary) !important;
+}
+
+.DayPickerNavigation_button {
+  border-color: var(--border) !important;
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+/* ── Reset Button ───────────────────────────────────────── */
+.reset-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 10px 0;
+  background: linear-gradient(135deg, var(--btn-bg), var(--primary));
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.4px;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.reset-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   11. CHART AREA
+   ══════════════════════════════════════════════════════════ */
+.charts-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chart-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1300px) {
+  .chart-row-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+
+  .chart-row-2,
+  .chart-row-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 6px 8px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.02) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+}
+
+.chart-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   12. SCROLLBAR
+   ══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ══════════════════════════════════════════════════════════
+   13. MISC
+   ══════════════════════════════════════════════════════════ */
+._dash-loading {
+  display: none !important;
+}
+
+/* Smooth transitions for all theme-sensitive elements */
+.chart-card,
+.kpi-card,
+.filter-sidebar,
+.filter-heading,
+.filter-label,
+.kpi-title,
+.kpi-value,
+.kpi-unit,
+.section-title {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
