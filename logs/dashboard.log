@@ -340,3 +340,11 @@
 2026-05-13 12:22:20,807 [INFO] app - update_all [dark] -> 24,580 rows
 2026-05-13 12:31:41,339 [INFO] app - update_all [dark] -> 24,580 rows
 2026-05-13 12:31:53,513 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:53:46,108 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:53:47,016 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:54:01,553 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:54:06,175 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:54:09,981 [INFO] app - update_all [light] -> 24,580 rows
+2026-05-13 12:54:13,501 [INFO] app - update_all [light] -> 24,552 rows
+2026-05-13 12:54:15,124 [INFO] app - update_all [light] -> 19,854 rows
+2026-05-13 12:54:17,660 [INFO] app - update_all [light] -> 22,712 rows
